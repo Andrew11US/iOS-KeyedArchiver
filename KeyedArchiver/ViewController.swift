@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var fileURL: URL?
     let person = Person(name: "John", age: 22)
     
     override func viewDidLoad() {
@@ -48,8 +49,7 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Saving to the documents directory
-    
-    func saveToDirectory() {
+    func saveToDirectory() -> URL? {
         let person = Person(name: "Leo", age: 25)
         let randomFilename = UUID().uuidString
         let fullPath = getDocumentsDirectory().appendingPathComponent(randomFilename)
@@ -57,19 +57,19 @@ class ViewController: UIViewController {
         do {
             let data = try NSKeyedArchiver.archivedData(withRootObject: person, requiringSecureCoding: false)
             try data.write(to: fullPath)
-            print("Data saved to \(fullPath.absoluteString)")
-            retrieveFromDirectory(path: fullPath)
+            return fullPath
         } catch let error {
             print(error.localizedDescription)
         }
+        return nil
     }
     
     func retrieveFromDirectory(path: URL) {
             do {
                 let savedData = try Data(contentsOf: path)
-                let person = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedData) as? Person
-                print(person?.name)
-                print(person?.age)
+                if let person = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(savedData) as? Person {
+                    print("\(person.name) is \(person.age)")
+                }
             } catch let error {
                 print(error.localizedDescription)
             }
@@ -80,10 +80,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func saveData(_ sender: UIButton) {
-        saveToDirectory()
+        fileURL = saveToDirectory()
     }
     @IBAction func getData(_ sender: UIButton) {
-        
+        guard let url = fileURL else { return }
+        retrieveFromDirectory(path: url)
     }
 }
 
