@@ -15,19 +15,14 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        archive()
-//
-//        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
-//            self.unarchive()
-//        }
-    }
 
-    func archive() {
+    }
+    
+    // MARK: - Saving to UserDefaults using NSKeyedArchiver
+    func archive(person: Person) {
         do {
             let personData = try NSKeyedArchiver.archivedData(withRootObject: person, requiringSecureCoding: false)
             UserDefaults.standard.set(personData, forKey: "personData")
-            print("saved")
         } catch {
             print("Error!")
         }
@@ -37,14 +32,13 @@ class ViewController: UIViewController {
         if let loadedData = UserDefaults.standard.object(forKey: "personData") as? Data {
             do {
                 if let person = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(loadedData) as? Person {
-                    print(person.name)
-                    print(person.age)
+                    print("UD: \(person.name) is \(person.age)")
                 }
             } catch let error {
                 print(error.localizedDescription)
             }
         } else {
-            print("Could not be loaded")
+            print("No data for key provided")
         }
     }
     
@@ -81,10 +75,19 @@ class ViewController: UIViewController {
     
     @IBAction func saveData(_ sender: UIButton) {
         fileURL = saveToDirectory()
+        print("Saved to \(String(describing: fileURL?.absoluteString ?? ""))")
     }
     @IBAction func getData(_ sender: UIButton) {
         guard let url = fileURL else { return }
         retrieveFromDirectory(path: url)
+    }
+    
+    @IBAction func saveToDefaults(_ sender: UIButton) {
+        archive(person: person)
+        print("Saved to UserDefaults")
+    }
+    @IBAction func getFromDefaults(_ sender: UIButton) {
+        unarchive()
     }
 }
 

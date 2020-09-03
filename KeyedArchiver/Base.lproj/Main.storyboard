@@ -15,21 +15,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="bPl-Kw-uoN">
-                                <rect key="frame" x="190" y="395.5" width="34" height="105"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="bPl-Kw-uoN">
+                                <rect key="frame" x="142" y="313" width="130" height="270"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7hw-ej-nyR">
-                                        <rect key="frame" x="0.0" y="0.0" width="34" height="30"/>
-                                        <state key="normal" title="Save"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="30"/>
+                                        <state key="normal" title="Save to Directory"/>
                                         <connections>
                                             <action selector="saveData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xi0-8G-hEG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zpm-Tr-him">
-                                        <rect key="frame" x="0.0" y="75" width="34" height="30"/>
-                                        <state key="normal" title="Get"/>
+                                        <rect key="frame" x="0.0" y="80" width="130" height="30"/>
+                                        <state key="normal" title="Get from Directory"/>
                                         <connections>
                                             <action selector="getData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xuh-CG-FL7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EX7-hA-ea3">
+                                        <rect key="frame" x="0.0" y="160" width="130" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Save to Defaults">
+                                            <color key="titleColor" red="0.65954603860000005" green="0.54490247780000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveToDefaults:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pbe-jC-zac"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E04-8A-TOk">
+                                        <rect key="frame" x="0.0" y="240" width="130" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Get from Defaluts">
+                                            <color key="titleColor" red="0.65954603860000005" green="0.54490247780000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="getFromDefaults:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7pq-hl-bng"/>
                                         </connections>
                                     </button>
                                 </subviews>
